@@ -16,13 +16,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     func: extractPageInfo,
   });
 
+  // Affiche les data de la page dans la popup
   const { title, description } = results[0].result;
   document.getElementById("titleInput").value = title;
   document.getElementById("descInput").value = description;
 
   // Capture du screenshot de l’onglet visible
   chrome.tabs.captureVisibleTab(null, { format: "png" }, (dataUrl) => {
+    //affiche le visuel
     document.getElementById("screenshot").src = dataUrl;
+    //set le champ input
+    document.getElementById("screenshotCode").value = dataUrl.replace(/^data:image\/png;base64,/, '');
   });
 });
 
@@ -86,6 +90,6 @@ document.getElementById("saveButton").addEventListener("click", async () => {
     log("Fichier mis à jour sur GitHub !");
   } catch (err) {
     console.error(err);
-    log("ERROR " + err.message);
+    log("ERREUR " + err.message);
   }
 });
