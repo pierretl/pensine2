@@ -1,0 +1,11 @@
+{
+    "manifest_version": 3,
+    "name": "Popup avec Screenshot",
+    "version": "1.2",
+    "description": "Affiche les infos de la page et un screenshot dans une popup.",
+    "permissions": ["scripting", "tabs", "activeTab", "downloads"],
+    "action": {
+      "default_popup": "popup.html",
+      "default_icon": "icon.png"
+    }
+  }

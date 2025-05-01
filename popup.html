@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Infos de la page</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 10px;
+      width: 300px;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 5px;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 15px;
+      padding: 6px 12px;
+    }
+    img {
+      margin-top: 15px;
+      max-width: 100%;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <form id="pageForm">
+    <label for="titleInput">Titre</label>
+    <input type="text" id="titleInput" name="title">
+
+    <label for="descInput">Description</label>
+    <input type="text" id="descInput" name="description">
+
+    <button type="button" id="logButton">Console Log</button>
+  </form>
+
+  <img id="screenshot" alt="Screenshot de l'onglet actif" />
+
+  <button type="button" id="downloadButton">Télécharger l'image</button>
+
+  <script src="popup.js"></script>
+</body>
+</html>
