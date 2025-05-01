@@ -3,7 +3,7 @@
     "name": "Pensine WIP 1.0",
     "version": "1.0",
     "description": "Marques pages ++",
-    "permissions": ["scripting", "tabs", "activeTab", "downloads"],
+    "permissions": ["scripting", "tabs", "activeTab", "downloads","storage"],
     "host_permissions": [
       "https://api.github.com/*"
     ],

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
+  <meta charset="utf-8">
   <title>Infos de la page</title>
   <style>
     body {
@@ -13,7 +14,7 @@
       margin-top: 10px;
       font-weight: bold;
     }
-    input[type="text"] {
+    input {
       width: 100%;
       padding: 5px;
       box-sizing: border-box;
@@ -30,23 +31,38 @@
     pre {
       overflow: auto;
     }
+    .hide {
+      display: none;
+    }
   </style>
 </head>
 <body>
-  <form id="pageForm">
-    <label for="titleInput">Titre</label>
-    <input type="text" id="titleInput" name="title">
-
-    <label for="descInput">Description</label>
-    <input type="text" id="descInput" name="description">
+  <form>
+    <fieldset>
+      <legend>GitHub Token</legend>
+      <label for="tokenInput">Token</label>
+      <input type="password" id="tokenInput" placeholder="ghp_..." />
+      <button type="button" id="saveToken">Enregistrer</button>
+      <button type="button" id="testToken">Tester</button>
+      <button type="button" id="clearToken">Effacer</button>
+      <pre id="logToken"></pre>
+      <button type="button" id="clearLogToken" class="hide">Effacer les logs</button>
+    </fieldset>
+    <fieldset>
+      <legend>Marquer cette onglet</legend>
+      <label for="urlInput">URL</label>
+      <input type="text" id="urlInput" name="url" disabled>
+      <label for="titleInput">Titre</label>
+      <input type="text" id="titleInput" name="title">
+      <label for="descInput">Description</label>
+      <input type="text" id="descInput" name="description">
+      <label for="screenshotCode">Screenshot</label>
+      <img id="screenshot" alt="" src="" />
+      <input type="text" id="screenshotCode">
+      <button type="button" id="saveButton">Ajouter ce marque page</button>
+      <pre id="log"></pre>
+    </fieldset>
   </form>
-
-  <img id="screenshot" alt="" src="" />
-  <input type="text" id="screenshotCode">
-
-  <button type="button" id="saveButton">Enregistrer sur GitHub</button>
-  <pre id="log"></pre>
-
   <script src="popup.js"></script>
 </body>
 </html>
