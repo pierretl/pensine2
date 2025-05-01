@@ -1,9 +1,12 @@
 {
     "manifest_version": 3,
-    "name": "Popup avec Screenshot",
-    "version": "1.2",
-    "description": "Affiche les infos de la page et un screenshot dans une popup.",
+    "name": "Pensine WIP 1.0",
+    "version": "1.0",
+    "description": "Marques pages ++",
     "permissions": ["scripting", "tabs", "activeTab", "downloads"],
+    "host_permissions": [
+      "https://api.github.com/*"
+    ],
     "action": {
       "default_popup": "popup.html",
       "default_icon": "icon.png"
