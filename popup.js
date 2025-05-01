@@ -44,6 +44,7 @@ function extractPageInfo() {
   });
   
 
+  //télécahrge l'iamge
   document.getElementById("downloadButton").addEventListener("click", async () => {
     const dataUrl = document.getElementById("screenshot").src;
   
@@ -52,3 +53,27 @@ function extractPageInfo() {
       filename: "screenshot.png"
     });
   });
+
+  //Générer et télécharger le fichier JSON
+  document.getElementById("saveButton").addEventListener("click", async () => {
+    const title = document.getElementById("titleInput").value;
+    const description = document.getElementById("descInput").value;
+    const screenshot = document.getElementById("screenshot").src;
+  
+    const data = {
+      title,
+      description,
+      screenshot
+    };
+  
+    const json = JSON.stringify(data, null, 2);
+    const blob = new Blob([json], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+  
+    chrome.downloads.download({
+      url: url,
+      filename: "page-info.json",
+      saveAs: true // demande à l'utilisateur où enregistrer
+    });
+  });
+  
