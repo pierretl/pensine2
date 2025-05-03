@@ -1,6 +1,6 @@
 {
     "manifest_version": 3,
-    "name": "Pensine WIP 1.0",
+    "name": "Pensine WIP 1.1",
     "version": "1.0",
     "description": "Marques pages ++",
     "permissions": ["scripting", "tabs", "activeTab", "downloads","storage"],
