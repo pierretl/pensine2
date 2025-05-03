@@ -1,7 +1,7 @@
 [
   {
     "title": "Pierre Tampon-Lajarriette",
-    "description": "Site personnel et laboratoire crÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©atif depuis 2007 de Pierre Tampon-Lajarriette aka Katre, IntÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©grateur Web. test"
+    "description": "Site personnel et laboratoire crÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©atif depuis 2007 de Pierre Tampon-Lajarriette aka Katre, IntÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©grateur Web. test"
   },
   {
     "title": "titre",
@@ -10,7 +10,7 @@
   },
   {
     "title": "YouTube",
-    "description": "Profitez des vidÃƒÆ’Ã‚Â¯Ãƒâ€šÃ‚Â¿Ãƒâ€šÃ‚Â½os et de la musique que vous aimez, mettez en ligne des contenus originaux, et partagez-les avec vos amis, vos proches et le monde entier.",
+    "description": "Profitez des vidÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¿ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â½os et de la musique que vous aimez, mettez en ligne des contenus originaux, et partagez-les avec vos amis, vos proches et le monde entier.",
     "date": "2025-05-01T13:53:53.816Z"
   },
   {
@@ -38,7 +38,7 @@
   {
     "urlSite": "https://www.twitch.tv/",
     "title": "Twitch",
-    "description": "Twitch est un service de streaming interactif de jeux vidÃƒÆ’Ã‚Â©o, de divertissement, de musique, de sport, etc. Il y en a pour tous les goÃƒÆ’Ã‚Â»ts sur Twitch.",
+    "description": "Twitch est un service de streaming interactif de jeux vidÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â©o, de divertissement, de musique, de sport, etc. Il y en a pour tous les goÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â»ts sur Twitch.",
     "screenshot": "twitch-tv__accueil__2025-05-01.png",
     "date": "2025-05-01T21:01:16.385Z"
   },
@@ -59,21 +59,21 @@
   {
     "urlSite": "https://www.pierre.tl/realisations/la-main-bleue/",
     "title": "La Main Bleue - Pierre Tampon-Lajarriette",
-    "description": "RÃƒÂ©alisation du site vitrine de La Main Bleue qui rÃƒÂ©unit diverses approches liÃƒÂ©es au geste en conscience",
+    "description": "RÃƒÆ’Ã‚Â©alisation du site vitrine de La Main Bleue qui rÃƒÆ’Ã‚Â©unit diverses approches liÃƒÆ’Ã‚Â©es au geste en conscience",
     "screenshot": "pierre-tl__realisations-la-main-bleue__2025-05-03.png",
     "date": "2025-05-03T08:03:05.543Z"
   },
   {
     "urlSite": "https://www.pierre.tl/realisations/mastermind/",
-    "title": "MasterMÂ¿nd - Pierre Tampon-Lajarriette",
-    "description": "RÃ©plique de l'un des plus classiques des jeux de sociÃ©tÃ©, le Mastermind, un jeu de rÃ©flexion et de dÃ©duction",
+    "title": "MasterMÃ‚Â¿nd - Pierre Tampon-Lajarriette",
+    "description": "RÃƒÂ©plique de l'un des plus classiques des jeux de sociÃƒÂ©tÃƒÂ©, le Mastermind, un jeu de rÃƒÂ©flexion et de dÃƒÂ©duction",
     "screenshot": "pierre-tl__realisations-mastermind__2025-05-03.png",
     "date": "2025-05-03T08:13:41.285Z"
   },
   {
     "urlSite": "https://www.pierre.tl/realisations/liste-de-lecture/",
     "title": "Liste de lecture - Pierre Tampon-Lajarriette",
-    "description": "Évolution de ma liste de lecture en ligne",
+    "description": "Ã‰volution de ma liste de lecture en ligne",
     "screenshot": "pierre-tl__realisations-liste-de-lecture__2025-05-03.png",
     "date": "2025-05-03T08:30:48.762Z"
   },
@@ -94,8 +94,15 @@
   {
     "urlSite": "https://www.pierre.tl/realisations/radiophonix/",
     "title": "Radiophonix - Pierre Tampon-Lajarriette",
-    "description": "R�alisation de la charte graphique, du logo, d'une b�che publicitaire, de carte de visite et int�gration du site web pour Radiophonix",
+    "description": "Réalisation de la charte graphique, du logo, d'une bâche publicitaire, de carte de visite et intégration du site web pour Radiophonix",
     "screenshot": "pierre-tl__realisations-radiophonix__2025-05-03.png",
     "date": "2025-05-03T20:54:35.715Z"
+  },
+  {
+    "urlSite": "https://www.pierre.tl/realisations/radiophonix/",
+    "title": "Radiophonix - Pierre Tampon-Lajarriette",
+    "description": "R�alisation de la charte graphique, du logo, d'une b�che publicitaire, de carte de visite et int�gration du site web pour Radiophonix",
+    "screenshot": "pierre-tl__realisations-radiophonix__2025-05-03.png",
+    "date": "2025-05-03T20:55:07.310Z"
   }
 ]
