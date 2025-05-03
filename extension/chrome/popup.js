@@ -3,8 +3,9 @@ import { dom } from './utils/domElements.js';
 import { saveToken, testToken, clearToken, clearLogToken, prefillTokenInput } from './services/tokenManager.js';
 
 import { getPageInfo, getCurrentTab, getScreenshot } from './services/dataTab.js';
-import { saveBookmark } from './services/github.js';
 import { log } from './utils/log.js';
+import { validateBookmarkFields, sanitizeText } from './utils/validateFields.js';
+import { saveBookmark } from './services/github.js';
 
 //////////////////////////////////////////////////////////
 // GESTION DU TOKEN
@@ -38,9 +39,25 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 dom.saveButton.addEventListener("click", async () => {
-    const urlSite = dom.urlInput.value;
-    const title = dom.titleInput.value;
-    const description = dom.descInput.value;
+    const rawUrl = dom.urlInput.value;
+    const rawTitle = dom.titleInput.value;
+    const rawDesc = dom.descInput.value;
+
+    //validation
+    const errors = validateBookmarkFields({
+        title: rawTitle,
+        description: rawDesc,
+        urlSite: rawUrl
+    });
+    if (errors.length > 0) {
+        errors.forEach(log);
+        return;
+    }
+
+    // Nettoyage des données
+    const title = sanitizeText(rawTitle, 150);
+    const description = sanitizeText(rawDesc, 500);
+    const urlSite = rawUrl.trim(); // L'URL est déjà validée, pas besoin de sanitize
   
     if (!cachedScreenshotDataUrl) {
         log("Erreur : aucune capture disponible.");
