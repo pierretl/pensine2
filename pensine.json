@@ -1,7 +1,7 @@
 [
   {
     "title": "Pierre Tampon-Lajarriette",
-    "description": "Site personnel et laboratoire crÃ©atif depuis 2007 de Pierre Tampon-Lajarriette aka Katre, IntÃ©grateur Web. test"
+    "description": "Site personnel et laboratoire crÃƒÂ©atif depuis 2007 de Pierre Tampon-Lajarriette aka Katre, IntÃƒÂ©grateur Web. test"
   },
   {
     "title": "titre",
@@ -10,7 +10,7 @@
   },
   {
     "title": "YouTube",
-    "description": "Profitez des vidï¿½os et de la musique que vous aimez, mettez en ligne des contenus originaux, et partagez-les avec vos amis, vos proches et le monde entier.",
+    "description": "Profitez des vidÃ¯Â¿Â½os et de la musique que vous aimez, mettez en ligne des contenus originaux, et partagez-les avec vos amis, vos proches et le monde entier.",
     "date": "2025-05-01T13:53:53.816Z"
   },
   {
@@ -38,7 +38,7 @@
   {
     "urlSite": "https://www.twitch.tv/",
     "title": "Twitch",
-    "description": "Twitch est un service de streaming interactif de jeux vidéo, de divertissement, de musique, de sport, etc. Il y en a pour tous les goûts sur Twitch.",
+    "description": "Twitch est un service de streaming interactif de jeux vidÃ©o, de divertissement, de musique, de sport, etc. Il y en a pour tous les goÃ»ts sur Twitch.",
     "screenshot": "twitch-tv__accueil__2025-05-01.png",
     "date": "2025-05-01T21:01:16.385Z"
   },
@@ -59,8 +59,15 @@
   {
     "urlSite": "https://www.pierre.tl/realisations/la-main-bleue/",
     "title": "La Main Bleue - Pierre Tampon-Lajarriette",
-    "description": "R�alisation du site vitrine de La Main Bleue qui r�unit diverses approches li�es au geste en conscience",
+    "description": "Réalisation du site vitrine de La Main Bleue qui réunit diverses approches liées au geste en conscience",
     "screenshot": "pierre-tl__realisations-la-main-bleue__2025-05-03.png",
     "date": "2025-05-03T08:03:05.543Z"
+  },
+  {
+    "urlSite": "https://www.pierre.tl/realisations/mastermind/",
+    "title": "MasterM�nd - Pierre Tampon-Lajarriette",
+    "description": "R�plique de l'un des plus classiques des jeux de soci�t�, le Mastermind, un jeu de r�flexion et de d�duction",
+    "screenshot": "pierre-tl__realisations-mastermind__2025-05-03.png",
+    "date": "2025-05-03T08:13:41.285Z"
   }
 ]
