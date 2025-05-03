@@ -1,3 +1,5 @@
+import { checkResponseOk } from './utils/checkResponseOk.js';
+
 // Log de la gestion du Token
 const logToken = (msg) => {
   document.getElementById("logToken").textContent = msg;
@@ -161,11 +163,7 @@ document.getElementById("saveButton").addEventListener("click", async () => {
           })
         });
 
-        if (!imageUploadRes.ok) {
-          const message = "Erreur upload image";
-          log(message);
-          throw new Error(message);
-        }
+        checkResponseOk(imageUploadRes, "Erreur upload image");
 
         log("Image uploadée avec succès");
 
@@ -179,11 +177,7 @@ document.getElementById("saveButton").addEventListener("click", async () => {
           }
         });
 
-        if (!res.ok) {
-          const message = `Erreur récupération fichier (code ${res.status})`;
-          log(message);
-          throw new Error(message);
-        }
+        checkResponseOk(res, "Erreur récupération fichier");
 
         const data = await res.json();
         const contentDecoded = atob(data.content);
@@ -215,11 +209,7 @@ document.getElementById("saveButton").addEventListener("click", async () => {
           })
         });
 
-        if (!updateRes.ok) {
-          const message = "Erreur envoi PUT";
-          log(message);
-          throw new Error(message);
-        }
+        checkResponseOk(updateRes, "Erreur envoi PUT");
 
         log("Fichier JSON mis à jour !");
       } catch (err) {
