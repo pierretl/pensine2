@@ -1,71 +1,23 @@
+import { dom } from './utils/domElements.js';
+import { saveToken, testToken, clearToken, clearLogToken, prefillTokenInput } from './services/tokenManager.js';
 import { extractPageInfo } from './utils/extractPageInfo.js';
 import { formatNanmeScreenshot } from './utils/formatNanmeScreenshot.js';
 import { checkResponseOk } from './utils/checkResponseOk.js';
 
-// Log de la gestion du Token
-const logToken = (msg) => {
-  document.getElementById("logToken").textContent = msg;
-  document.getElementById("clearLogToken").classList.remove("hide");
-};
+//////////////////////////////////////////////////////////
+// GESTION DU TOKEN
+//////////////////////////////////////////////////////////
 
-// Effacer les logToken
-document.getElementById("clearLogToken").addEventListener("click", () => {
-  logToken("");
-  document.getElementById("clearLogToken").classList.add("hide");
-});
-
-// Pré-remplir le champ token si existe déjà
-chrome.storage.local.get("githubToken", (result) => {
-  const token = result.githubToken;
-  if (token) {
-    document.getElementById("tokenInput").value = token;
-  }
-});
-
-//Stocker le token
-document.getElementById("saveToken").addEventListener("click", () => {
-  const token = document.getElementById("tokenInput").value;
-
-  if (token) {
-    chrome.storage.local.set({ githubToken: token }, () => {
-      logToken("Token enregistré");
-    });
-  }
-});
-
-//Tester le token
-document.getElementById("testToken").addEventListener("click", () => {
-  chrome.storage.local.get("githubToken", (result) => {
-    const token = result.githubToken;
-
-    if (!token) {
-      logToken("Erreur : Aucun token trouvé");
-      return;
-    }
-
-    fetch("https://api.github.com/user", {
-      headers: {
-        Authorization: `token ${token}`
-      }
-    })
-    .then(res => res.json())
-    .then(data => {
-      logToken(JSON.stringify(data, null, 2));
-    })
-    .catch(err => {
-      logToken("Erreur : " + err);
-    });
-  });
-});
+dom.saveToken.addEventListener("click", saveToken);
+dom.testToken.addEventListener("click", testToken);
+dom.clearToken.addEventListener("click", clearToken);
+dom.clearLogToken.addEventListener("click", clearLogToken);
+prefillTokenInput();
 
 
-//Effacer le token
-document.getElementById("clearToken").addEventListener("click", () => {
-  chrome.storage.local.remove("githubToken", () => {
-    logToken("Token supprimé");
-    document.getElementById("tokenInput").value = "";
-  });
-});
+//////////////////////////////////////////////////////////
+// MARQUE LA PAGE
+//////////////////////////////////////////////////////////
 
 // Pré-remplis le formulaire d'enregistrement du marque page
 document.addEventListener("DOMContentLoaded", async () => {
