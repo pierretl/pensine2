@@ -1,4 +1,5 @@
 import { checkResponseOk } from './utils/checkResponseOk.js';
+import { formatNanmeScreenshot } from './utils/formatNanmeScreenshot.js';
 
 // Log de la gestion du Token
 const logToken = (msg) => {
@@ -107,21 +108,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 const log = (msg) => {
   document.getElementById("log").textContent += msg + "\n";
 };
-
-// Formate le nom du screenshot
-function formatNanmeScreenshot(url, date = new Date().toISOString().split('T')[0]) {
-  try {
-    const parsedUrl = new URL(url);
-    const domaine = parsedUrl.hostname.replace(/^www\./, '').replace(/\./g, '-');
-    let chemin = parsedUrl.pathname.replace(/^\/|\/$/g, '').replace(/\//g, '-');
-    if (!chemin) chemin = 'accueil';
-
-    return `${domaine}__${chemin}__${date}.png`;
-  } catch (e) {
-    console.error("URL invalide :", e);
-    return null;
-  }
-}
 
 
 // Sauvegarde vers GitHub + Upload screenshot
