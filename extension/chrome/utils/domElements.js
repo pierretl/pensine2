@@ -4,5 +4,12 @@ export const dom = {
     testToken: document.getElementById("testToken"),
     clearToken: document.getElementById("clearToken"),
     logToken: document.getElementById("logToken"),
-    clearLogToken: document.getElementById("clearLogToken")
+    clearLogToken: document.getElementById("clearLogToken"),
+    titleInput: document.getElementById("titleInput"),
+    descInput: document.getElementById("descInput"),
+    urlInput: document.getElementById("urlInput"),
+    screenshotImg: document.getElementById("screenshotImg"),
+    screenshotCode: document.getElementById("screenshotCode"),
+    log: document.getElementById("log"),
+    saveButton: document.getElementById("saveButton")
 };
