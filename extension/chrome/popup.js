@@ -1,5 +1,6 @@
-import { checkResponseOk } from './utils/checkResponseOk.js';
+import { extractPageInfo } from './utils/extractPageInfo.js';
 import { formatNanmeScreenshot } from './utils/formatNanmeScreenshot.js';
+import { checkResponseOk } from './utils/checkResponseOk.js';
 
 // Log de la gestion du Token
 const logToken = (msg) => {
@@ -65,14 +66,6 @@ document.getElementById("clearToken").addEventListener("click", () => {
     document.getElementById("tokenInput").value = "";
   });
 });
-
-// Récupérer les infos de l'onglet
-function extractPageInfo() {
-  const title = document.title;
-  const metaDesc = document.querySelector('meta[name="description"]');
-  const description = metaDesc ? metaDesc.content : "";
-  return { title, description };
-}
 
 // Pré-remplis le formulaire d'enregistrement du marque page
 document.addEventListener("DOMContentLoaded", async () => {
