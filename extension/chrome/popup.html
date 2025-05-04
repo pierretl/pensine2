@@ -1,68 +1,54 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <title>Infos de la page</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      padding: 10px;
-      width: 300px;
-    }
-    label {
-      display: block;
-      margin-top: 10px;
-      font-weight: bold;
-    }
-    input {
-      width: 100%;
-      padding: 5px;
-      box-sizing: border-box;
-    }
-    button {
-      margin-top: 15px;
-      padding: 6px 12px;
-    }
-    img {
-      margin-top: 15px;
-      max-width: 100%;
-      border: 1px solid #ccc;
-    }
-    pre {
-      overflow: auto;
-    }
-    .hide {
-      display: none;
-    }
-  </style>
+    <meta charset="utf-8">
+    <title>Infos de la page</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <form>
-    <fieldset>
-      <legend>GitHub Token</legend>
-      <label for="tokenInput">Token</label>
-      <input type="password" id="tokenInput" placeholder="ghp_..." />
-      <button type="button" id="saveToken">Enregistrer</button>
-      <button type="button" id="testToken">Tester</button>
-      <button type="button" id="clearToken">Effacer</button>
-      <pre id="logToken"></pre>
-      <button type="button" id="clearLogToken" class="hide">Effacer les logs</button>
-    </fieldset>
-    <fieldset>
-      <legend>Marquer cette onglet</legend>
-      <label for="urlInput">URL</label>
-      <input type="text" id="urlInput" name="url" disabled>
-      <label for="titleInput">Titre</label>
-      <input type="text" id="titleInput" name="title">
-      <label for="descInput">Description</label>
-      <input type="text" id="descInput" name="description">
-      <label for="screenshotCode">Screenshot</label>
-      <img id="screenshotImg" alt="" src="" />
-      <input type="text" id="screenshotCode">
-      <button type="button" id="saveButton">Ajouter ce marque page</button>
-      <pre id="log"></pre>
-    </fieldset>
-  </form>
-  <script type="module" src="popup.js"></script>
+    <h1>Pensine</h1>
+    <nav class="mb-16" role="navigation">
+        <ul class="reset flex ai-c gap">
+            <li class="accent strong">
+                Ajouter
+            </li>
+            <li>
+                Config
+            </li>
+            <li>
+                <label>Theme&nbsp;:
+                    <select data-theme-picker name="themepicker" id="theme">
+                        <option value="system">System</option>
+                        <option value="light">Light</option>
+                        <option value="dark">Dark</option>
+                    </select>
+                </label>
+            </li>
+        </ul>
+    </nav>
+    <form>
+        <h2>Config</h2>
+        <label for="tokenInput">Token</label>
+        <input type="password" id="tokenInput" placeholder="ghp_..." class="mb-10" />
+        <button type="button" id="saveToken">Enregistrer</button>
+        <button type="button" id="testToken">Tester</button>
+        <button type="button" id="clearToken">Effacer</button>
+        <pre id="logToken" class="accent"></pre>
+        <button type="button" id="clearLogToken" class="hide">Effacer les logs</button>
+
+        <h2>Ajouter</h2>
+        <label for="urlInput">URL</label>
+        <input type="text" id="urlInput" name="url" disabled class="mb-10">
+        <label for="titleInput">Titre</label>
+        <input type="text" id="titleInput" name="title" class="mb-10">
+        <label for="descInput">Description</label>
+        <input type="text" id="descInput" name="description" class="mb-10">
+        <label for="screenshotCode">Screenshot</label>
+        <img id="screenshotImg" alt="" src="" />
+        <input type="text" id="screenshotCode" class="mb-10">
+        <button type="button" id="saveButton">Ajouter ce marque page</button>
+        <pre id="log" class="accent"></pre>
+    </form>
+    <script type="module" src="popup.js"></script>
 </body>
 </html>
