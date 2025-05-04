@@ -3,9 +3,13 @@ import { formatNanmeScreenshot } from '../utils/formatNanmeScreenshot.js';
 import { log } from '../utils/log.js';
 import { checkResponseOk } from '../utils/checkResponseOk.js';
 
+function utf8ToBase64(str) {
+    return btoa(unescape(encodeURIComponent(str)));
+}
+
 const GITHUB_API_URL = "https://api.github.com/repos/pierretl/pensine2/contents/pensine.json";
 
-export async function saveBookmark({ urlfavicon, urlSite, title, description, screenshotDataUrl }) {
+export async function saveBookmark({ note, urlfavicon, urlSite, title, description, screenshotDataUrl }) {
     const token = await getGithubToken();
     if (!token) throw new Error("Token GitHub introuvable");
 
@@ -31,7 +35,9 @@ export async function saveBookmark({ urlfavicon, urlSite, title, description, sc
     const jsonArray = JSON.parse(atob(data.content));
     const sha = data.sha;
 
+    // Ajouter un nouveau marque-page
     jsonArray.push({
+        note,
         urlfavicon,
         urlSite,
         title,
@@ -40,7 +46,8 @@ export async function saveBookmark({ urlfavicon, urlSite, title, description, sc
         date: new Date().toISOString()
     });
 
-    const updatedContent = btoa(JSON.stringify(jsonArray, null, 2));
+    // Encodage du contenu JSON complet avec gestion UTF-8
+    const updatedContent = utf8ToBase64(JSON.stringify(jsonArray, null, 2));
 
     const updateRes = await fetch(GITHUB_API_URL, {
         method: 'PUT',

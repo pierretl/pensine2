@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 // Ajout
 dom.saveButton.addEventListener("click", async () => {
+    const rawNote = dom.noteInput.value;
     const rawFaviconUrl = dom.faviconUrl.value;
     const rawUrl = dom.urlInput.value;
     const rawTitle = dom.titleInput.value;
@@ -65,6 +66,7 @@ dom.saveButton.addEventListener("click", async () => {
 
     //validation
     const errors = validateBookmarkFields({
+        note: rawNote,
         title: rawTitle,
         description: rawDesc,
         urlSite: rawUrl,
@@ -76,6 +78,7 @@ dom.saveButton.addEventListener("click", async () => {
     }
 
     // Nettoyage des données
+    const note = sanitizeText(rawNote, 500);
     const title = sanitizeText(rawTitle, 150);
     const description = sanitizeText(rawDesc, 500);
     const urlSite = rawUrl.trim(); // L'URL est déjà validée, pas besoin de sanitize
@@ -87,7 +90,7 @@ dom.saveButton.addEventListener("click", async () => {
     }
   
     try {
-        await saveBookmark({ urlfavicon, urlSite, title, description, screenshotDataUrl: cachedScreenshotDataUrl });
+        await saveBookmark({ note, urlfavicon, urlSite, title, description, screenshotDataUrl: cachedScreenshotDataUrl });
         log("Marque-page enregistré avec succès !");
     } catch (err) {
         console.error(err);

@@ -7,6 +7,7 @@ export const dom = {
     clearToken: document.getElementById("clearToken"),
     logToken: document.getElementById("logToken"),
     clearLogToken: document.getElementById("clearLogToken"),
+    noteInput: document.getElementById("noteInput"),
     faviconImg: document.getElementById("faviconImg"),
     faviconUrl: document.getElementById("faviconUrl"),
     faviconNotFound: document.getElementById("faviconNotFound"),
