@@ -27,15 +27,19 @@
 
     <!-- Ajouter -->
     <div id="panel1" role="tabpanel" tabindex="0" aria-labelledby="tab1">
+        <label for="faviconUrl">Favicon</label>
+        <img id="faviconImg" alt="" src="" width="16" height="16" class="mb-10"/>
+        <p id="faviconNotFound" class="mb-10 hide"><span aria-hidden="true">&#9746; </span>Favicon non trouvé</p>
+        <input type="hidden" id="faviconUrl">
         <label for="urlInput">URL</label>
         <input type="text" id="urlInput" name="url" disabled class="mb-10">
         <label for="titleInput">Titre</label>
         <input type="text" id="titleInput" name="title" class="mb-10">
         <label for="descInput">Description</label>
         <input type="text" id="descInput" name="description" class="mb-10">
-        <label for="screenshotCode">Screenshot</label>
-        <img id="screenshotImg" alt="" src="" />
-        <input type="text" id="screenshotCode" class="mb-10">
+        <label for="screenshotCode">Capture d'écran</label>
+        <img id="screenshotImg" alt="" src=""  class="mb-10"/>
+        <input type="hidden" id="screenshotCode">
         <button type="button" id="saveButton">Ajouter ce marque page</button>
         <pre id="log" class="accent"></pre>
     </div>

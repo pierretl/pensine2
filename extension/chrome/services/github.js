@@ -5,7 +5,7 @@ import { checkResponseOk } from '../utils/checkResponseOk.js';
 
 const GITHUB_API_URL = "https://api.github.com/repos/pierretl/pensine2/contents/pensine.json";
 
-export async function saveBookmark({ urlSite, title, description, screenshotDataUrl }) {
+export async function saveBookmark({ urlfavicon, urlSite, title, description, screenshotDataUrl }) {
     const token = await getGithubToken();
     if (!token) throw new Error("Token GitHub introuvable");
 
@@ -32,6 +32,7 @@ export async function saveBookmark({ urlSite, title, description, screenshotData
     const sha = data.sha;
 
     jsonArray.push({
+        urlfavicon,
         urlSite,
         title,
         description,

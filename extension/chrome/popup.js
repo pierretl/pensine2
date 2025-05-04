@@ -33,6 +33,7 @@ prefillTokenInput();
 
 let cachedScreenshotDataUrl = null;
 
+// Affichage
 document.addEventListener("DOMContentLoaded", async () => {
     const tab = await getCurrentTab();
     const { title, description } = await getPageInfo(tab.id);
@@ -42,12 +43,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     dom.descInput.value = description;
     dom.urlInput.value = url;
 
+    if (tab.favIconUrl) {
+        dom.faviconUrl.value = tab.favIconUrl;
+        dom.faviconImg.src = tab.favIconUrl;
+    } else {
+        dom.faviconNotFound.classList.remove('hide');
+    }
+
     cachedScreenshotDataUrl = await getScreenshot();
     dom.screenshotImg.src = cachedScreenshotDataUrl;
     dom.screenshotCode.value = cachedScreenshotDataUrl.replace(/^data:image\/png;base64,/, '');
 });
 
+
+// Ajout
 dom.saveButton.addEventListener("click", async () => {
+    const rawFaviconUrl = dom.faviconUrl.value;
     const rawUrl = dom.urlInput.value;
     const rawTitle = dom.titleInput.value;
     const rawDesc = dom.descInput.value;
@@ -56,7 +67,8 @@ dom.saveButton.addEventListener("click", async () => {
     const errors = validateBookmarkFields({
         title: rawTitle,
         description: rawDesc,
-        urlSite: rawUrl
+        urlSite: rawUrl,
+        urlfavicon: rawFaviconUrl
     });
     if (errors.length > 0) {
         errors.forEach(log);
@@ -67,6 +79,7 @@ dom.saveButton.addEventListener("click", async () => {
     const title = sanitizeText(rawTitle, 150);
     const description = sanitizeText(rawDesc, 500);
     const urlSite = rawUrl.trim(); // L'URL est déjà validée, pas besoin de sanitize
+    const urlfavicon = rawFaviconUrl.trim();
   
     if (!cachedScreenshotDataUrl) {
         log("Erreur : aucune capture disponible.");
@@ -74,7 +87,7 @@ dom.saveButton.addEventListener("click", async () => {
     }
   
     try {
-        await saveBookmark({ urlSite, title, description, screenshotDataUrl: cachedScreenshotDataUrl });
+        await saveBookmark({ urlfavicon, urlSite, title, description, screenshotDataUrl: cachedScreenshotDataUrl });
         log("Marque-page enregistré avec succès !");
     } catch (err) {
         console.error(err);
