@@ -153,3 +153,21 @@ ul.reset {
 .hide {
     display: none;
 }
+
+
+/* tabs */
+button.tab {
+    padding: 0;
+    border: 0 none;
+    color: var(--foreground);
+}
+
+button.tab[aria-selected="true"] {
+    font-weight: 700;
+    color: var(--accent);
+}
+
+/* nav */
+nav label {
+    font-weight: 400;
+}

@@ -6,37 +6,27 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Pensine</h1>
-    <nav class="mb-16" role="navigation">
-        <ul class="reset flex ai-c gap">
-            <li class="accent strong">
-                Ajouter
+
+    <nav role="navigation" class="mb-16 flex ai-c gap">
+        <ul class="reset flex ai-c gap" role="tablist" aria-label="Onglets">
+            <li role="presentation">
+                <button class="tab" id="tab1" role="tab" aria-controls="panel1" aria-selected="true" tabindex="0">Ajouter</button>
             </li>
-            <li>
-                Config
-            </li>
-            <li>
-                <label>Theme&nbsp;:
-                    <select data-theme-picker name="themepicker" id="theme">
-                        <option value="system">System</option>
-                        <option value="light">Light</option>
-                        <option value="dark">Dark</option>
-                    </select>
-                </label>
+            <li role="presentation">
+                <button class="tab" id="tab2" role="tab" aria-controls="panel2" aria-selected="false" tabindex="-1">Config</button>
             </li>
         </ul>
+        <label>Theme&nbsp;:
+            <select data-theme-picker name="themepicker" id="theme">
+                <option value="system">System</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
+            </select>
+        </label>
     </nav>
-    <form>
-        <h2>Config</h2>
-        <label for="tokenInput">Token</label>
-        <input type="password" id="tokenInput" placeholder="ghp_..." class="mb-10" />
-        <button type="button" id="saveToken">Enregistrer</button>
-        <button type="button" id="testToken">Tester</button>
-        <button type="button" id="clearToken">Effacer</button>
-        <pre id="logToken" class="accent"></pre>
-        <button type="button" id="clearLogToken" class="hide">Effacer les logs</button>
 
-        <h2>Ajouter</h2>
+    <!-- Ajouter -->
+    <div id="panel1" role="tabpanel" tabindex="0" aria-labelledby="tab1">
         <label for="urlInput">URL</label>
         <input type="text" id="urlInput" name="url" disabled class="mb-10">
         <label for="titleInput">Titre</label>
@@ -48,7 +38,18 @@
         <input type="text" id="screenshotCode" class="mb-10">
         <button type="button" id="saveButton">Ajouter ce marque page</button>
         <pre id="log" class="accent"></pre>
-    </form>
+    </div>
+
+    <!-- Config -->
+    <div id="panel2" role="tabpanel" tabindex="0" aria-labelledby="tab2" class="hide">
+        <label for="tokenInput">Token</label>
+        <input type="password" id="tokenInput" placeholder="ghp_..." class="mb-10" />
+        <button type="button" id="saveToken">Enregistrer</button>
+        <button type="button" id="testToken">Tester</button>
+        <button type="button" id="clearToken">Effacer</button>
+        <pre id="logToken" class="accent"></pre>
+        <button type="button" id="clearLogToken" class="hide">Effacer les logs</button>
+    </div>
     <script type="module" src="popup.js"></script>
 </body>
 </html>

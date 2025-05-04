@@ -1,4 +1,6 @@
 export const dom = {
+    tabs: document.querySelectorAll('[role="tab"]'),
+    tabList: document.querySelector('[role="tablist"]'),
     tokenInput: document.getElementById("tokenInput"),
     saveToken: document.getElementById("saveToken"),
     testToken: document.getElementById("testToken"),

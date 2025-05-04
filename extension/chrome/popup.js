@@ -1,11 +1,20 @@
 import { dom } from './utils/domElements.js';
 
+import { initTabs } from './utils/tabs.js';
+
 import { saveToken, testToken, clearToken, clearLogToken, prefillTokenInput } from './services/tokenManager.js';
 
 import { getPageInfo, getCurrentTab, getScreenshot } from './services/dataTab.js';
 import { log } from './utils/log.js';
 import { validateBookmarkFields, sanitizeText } from './utils/validateFields.js';
 import { saveBookmark } from './services/github.js';
+
+
+//////////////////////////////////////////////////////////
+// INITIALISATION DES TABS
+//////////////////////////////////////////////////////////
+initTabs();
+  
 
 //////////////////////////////////////////////////////////
 // GESTION DU TOKEN
