@@ -29,32 +29,54 @@
     <div id="panel1" role="tabpanel" tabindex="0" aria-labelledby="tab1">
         <label for="noteInput">Note</label>
         <input type="text" id="noteInput" class="mb-10">
+
         <label for="faviconUrl">Favicon</label>
         <img id="faviconImg" alt="" src="" width="16" height="16" class="mb-10"/>
         <p id="faviconNotFound" class="mb-10 hide"><span aria-hidden="true">&#9746; </span>Favicon non trouvé</p>
+
         <input type="hidden" id="faviconUrl">
         <label for="urlInput">URL</label>
         <input type="text" id="urlInput" name="url" disabled class="mb-10">
+
         <label for="titleInput">Titre</label>
         <input type="text" id="titleInput" name="title" disabled class="mb-10">
+
         <label for="descInput">Description</label>
         <input type="text" id="descInput" name="description" disabled class="mb-10">
+
         <label for="screenshotCode">Capture d'écran</label>
         <img id="screenshotImg" alt="" src=""  class="mb-10"/>
+
         <input type="hidden" id="screenshotCode">
         <button type="button" id="saveButton">Ajouter ce marque page</button>
+
         <pre id="log" class="accent"></pre>
     </div>
 
     <!-- Config -->
     <div id="panel2" role="tabpanel" tabindex="0" aria-labelledby="tab2" class="hide">
+        <label for="userInput">Nom d'utilisateur GitHub</label>
+        <input type="text" id="userInput" class="mb-10">
+
+        <label for="repoInput">Nom du dépôt</label>
+        <input type="text" id="repoInput" class="mb-10">
+
         <label for="tokenInput">Token</label>
-        <input type="password" id="tokenInput" placeholder="ghp_..." class="mb-10" />
-        <button type="button" id="saveToken">Enregistrer</button>
-        <button type="button" id="testToken">Tester</button>
-        <button type="button" id="clearToken">Effacer</button>
-        <pre id="logToken" class="accent"></pre>
-        <button type="button" id="clearLogToken" class="hide">Effacer les logs</button>
+        <input type="password" id="tokenInput" class="mb-10" />
+
+        <button type="button" id="saveSettings">Enregistrer la configuration</button>
+        <button type="button" id="resetGitHubSettings">Réinitialiser la configuration GitHub</button>
+        <dialog id="resetGitHubSettingsDialog">
+            <form method="dialog">
+                <p>Êtes-vous sûr de vouloir supprimer la configuration ?</p>
+                <menu>
+                    <button type="button" id="resetGitHubSettingsYes" value="yes">Oui, supprimer</button>
+                    <button type="button" id="resetGitHubSettingsNo" value="no" autofocus>Annuler</button>
+                </menu>
+            </form>
+        </dialog>
+
+        <pre id="logSettings" class="accent"></pre>
     </div>
     <script type="module" src="popup.js"></script>
 </body>

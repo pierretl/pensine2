@@ -2,7 +2,7 @@ import { dom } from './utils/domElements.js';
 
 import { initTabs } from './utils/tabs.js';
 
-import { saveToken, testToken, clearToken, clearLogToken, prefillTokenInput } from './services/tokenManager.js';
+import { saveSettings, prefillInputSettings, resetGitHubSettings} from './services/settingsStorage.js';
 
 import { getPageInfo, getCurrentTab, getScreenshot } from './services/dataTab.js';
 import { log } from './utils/log.js';
@@ -17,14 +17,12 @@ initTabs();
   
 
 //////////////////////////////////////////////////////////
-// GESTION DU TOKEN
+// GESTION DE LA CONFIGURATION
 //////////////////////////////////////////////////////////
 
-dom.saveToken.addEventListener("click", saveToken);
-dom.testToken.addEventListener("click", testToken);
-dom.clearToken.addEventListener("click", clearToken);
-dom.clearLogToken.addEventListener("click", clearLogToken);
-prefillTokenInput();
+dom.saveSettings.addEventListener("click", saveSettings);
+dom.resetGitHubSettings.addEventListener("click", resetGitHubSettings);
+prefillInputSettings();
 
 
 //////////////////////////////////////////////////////////

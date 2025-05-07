@@ -1,4 +1,4 @@
-import { getGithubToken } from '../utils/getGithubToken.js';
+import { getGithubToken, getGitHubJsonUrl, getGitHubUploadUrl } from '../utils/githubUtils.js';
 import { formatNanmeScreenshot } from '../utils/formatNanmeScreenshot.js';
 import { log } from '../utils/log.js';
 import { checkResponseOk } from '../utils/checkResponseOk.js';
@@ -6,8 +6,6 @@ import { checkResponseOk } from '../utils/checkResponseOk.js';
 function utf8ToBase64(str) {
     return btoa(unescape(encodeURIComponent(str)));
 }
-
-const GITHUB_API_URL = "https://api.github.com/repos/pierretl/pensine2/contents/pensine.json";
 
 export async function saveBookmark({ note, urlfavicon, urlSite, title, description, screenshotDataUrl }) {
     const token = await getGithubToken();
@@ -19,6 +17,9 @@ export async function saveBookmark({ note, urlfavicon, urlSite, title, descripti
 
     // Upload image (en création ou mise à jour)
     await uploadScreenshotToGitHub({ base64Image, imagePath, token });
+
+     // Récupération de l'URL dynamique pour le fichier JSON
+     const GITHUB_API_URL = await getGitHubJsonUrl("pensine.json");
 
     // Récupération et mise à jour du fichier JSON
     log("Chargement du JSON GitHub...");
@@ -70,7 +71,8 @@ async function uploadScreenshotToGitHub({ base64Image, imagePath, token }) {
     let existingSha = null;
 
     // Vérifie si le fichier existe déjà
-    const checkRes = await fetch(`https://api.github.com/repos/pierretl/pensine2/contents/${imagePath}`, {
+    const checkUrl = await getGitHubUploadUrl(imagePath);
+    const checkRes = await fetch(checkUrl, {
         method: 'GET',
         headers: {
             'Authorization': `token ${token}`,
@@ -88,7 +90,8 @@ async function uploadScreenshotToGitHub({ base64Image, imagePath, token }) {
 
     // Envoi du fichier
     log("Envoi de l'image sur GitHub...");
-    const uploadRes = await fetch(`https://api.github.com/repos/pierretl/pensine2/contents/${imagePath}`, {
+    const uploadUrl = await getGitHubUploadUrl(imagePath);
+    const uploadRes = await fetch(uploadUrl, {
         method: "PUT",
         headers: {
             "Authorization": `token ${token}`,
