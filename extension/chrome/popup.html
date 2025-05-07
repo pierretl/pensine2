@@ -27,6 +27,12 @@
 
     <!-- Ajouter -->
     <div id="panel1" role="tabpanel" tabindex="0" aria-labelledby="tab1">
+        <label for="tagInput">Ajouter un tag :</label>
+        <ul id="tagList"></ul>
+        <input type="hidden" id="tagIds" name="tagIds" />
+        <input type="text" id="tagInput" list="tagSuggestions" class="mb-10">
+        <datalist id="tagSuggestions"></datalist>
+
         <label for="noteInput">Note</label>
         <input type="text" id="noteInput" class="mb-10">
 
