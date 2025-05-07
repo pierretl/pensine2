@@ -1,4 +1,5 @@
 export const dom = {
+    themeSelect: document.getElementById("themeSelect"),
     tabs: document.querySelectorAll('[role="tab"]'),
     tabList: document.querySelector('[role="tablist"]'),
     userInput: document.getElementById("userInput"),

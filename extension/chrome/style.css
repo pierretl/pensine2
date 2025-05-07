@@ -26,7 +26,7 @@ html {
     color-scheme: dark light;
 }
 
-:root:has(#theme [value="light"]:checked) {
+[data-theme="light"] {
     color-scheme: light;
     --foreground: var(--blue-900);
     --background: var(--blue-100);
@@ -34,7 +34,7 @@ html {
     --border: var(--grey-900);
 }
   
-:root:has(#theme [value="dark"]:checked) {
+[data-theme="dark"] {
     --foreground: var(--blue-100);
     --background: var(--blue-900);
     --accent: var(--blue-500);

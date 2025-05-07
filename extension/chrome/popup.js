@@ -2,12 +2,19 @@ import { dom } from './utils/domElements.js';
 
 import { initTabs } from './utils/tabs.js';
 
+import { initThemeSwitcher } from './services/theme.js';
+
 import { saveSettings, prefillInputSettings, resetGitHubSettings} from './services/settingsStorage.js';
 
 import { getPageInfo, getCurrentTab, getScreenshot } from './services/dataTab.js';
 import { log } from './utils/log.js';
 import { validateBookmarkFields, sanitizeText } from './utils/validateFields.js';
 import { saveBookmark } from './services/github.js';
+
+//////////////////////////////////////////////////////////
+// GESTION DU THEME
+//////////////////////////////////////////////////////////
+initThemeSwitcher(dom.themeSelect);
 
 
 //////////////////////////////////////////////////////////
