@@ -1,5 +1,6 @@
 // /utils/tags.js
 
+import { log } from '../utils/log.js';
 import { dom } from './domElements.js';  // Importation des éléments DOM
 import { getGitHubJsonUrl } from '../utils/githubUtils.js';  // Importation de la méthode pour obtenir l'URL GitHub
 
@@ -15,12 +16,24 @@ export const addTagToList = (tagLabel, tagId) => {
     const safeId = tagId.trim().toLowerCase();
 
     const invalidPattern = /[<>\/"'\\]/;
-    if (
-        safeLabel.length === 0 ||
-        safeLabel.length > 50 ||
-        invalidPattern.test(safeLabel)
-    ) {
-        console.warn(`Tag rejeté : "${safeLabel}"`);
+
+    if (safeLabel.length === 0) {
+        log(`Tag rejeté : le tag est vide.`);
+        return;
+    }
+
+    if (safeLabel.length > 50) {
+        log(`Tag rejeté : "${safeLabel}" est trop long (maximum 50 caractères).`);
+        return;
+    }
+
+    if (invalidPattern.test(safeLabel)) {
+        log(`Tag rejeté : "${safeLabel}" contient des caractères non autorisés (< > / " ' \\).`);
+        return;
+    }
+
+    if (!/^[a-zA-Z]/.test(safeLabel)) {
+        log(`Tag rejeté : "${safeLabel}" doit commencer par une lettre.`);
         return;
     }
 
