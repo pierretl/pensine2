@@ -3,10 +3,20 @@
     "urlfavicon": "https://www.pierre.tl/images/favicon/favicon-32x32.png",
     "urlSite": "https://www.pierre.tl/",
     "title": "Pierre Tampon-Lajarriette",
-    "description": "Site personnel et laboratoire créatif depuis 2007 de Pierre Tampon-Lajarriette aka Katre, Intégrateur Web.",
+    "description": "Site personnel et laboratoire crÃ©atif depuis 2007 de Pierre Tampon-Lajarriette aka Katre, IntÃ©grateur Web.",
     "screenshot": "pierre-tl__accueil__20250508_220705.png",
     "tags": "1,4",
     "note": "Porfolio inspiration",
     "date": "2025-05-08T20:07:06.585Z"
+  },
+  {
+    "urlfavicon": "https://www.pierre.tl/images/favicon/favicon-32x32.png",
+    "urlSite": "https://www.pierre.tl/recueil/note-accessibilite/",
+    "title": "Quelques notes sur les thématiques du RGAA - Pierre Tampon-Lajarriette",
+    "description": "Découvrir l’accessibilité du Web au travers une prise de notes durant une formation",
+    "screenshot": "pierre-tl__recueil-note-accessibilite__20250508_221556.png",
+    "tags": "4,5",
+    "note": "",
+    "date": "2025-05-08T20:15:58.358Z"
   }
 ]
