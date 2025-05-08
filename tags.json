@@ -14,5 +14,9 @@
   {
     "id": 4,
     "label": "article"
+  },
+  {
+    "id": 5,
+    "label": "a11y"
   }
 ]
