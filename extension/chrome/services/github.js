@@ -18,58 +18,8 @@ export async function saveBookmark({ note, urlfavicon, urlSite, title, descripti
     // Upload de la capture
     await uploadScreenshotToGitHub({ base64Image, imagePath, token });
 
-    // ==== 1. Mise à jour de tags.json (si nouveaux tags détectés) ====
-    const tagLabels = tags.filter(tag => isNaN(tag)); // Non numériques
-    const tagIds = [];
-
-    if (tagLabels.length > 0) {
-        const TAGS_API_URL = await getGitHubJsonUrl("tags.json");
-
-        const resTags = await fetch(TAGS_API_URL, {
-            method: 'GET',
-            headers: {
-                'Authorization': `token ${token}`,
-                'Accept': 'application/vnd.github.v3+json'
-            }
-        });
-        checkResponseOk(resTags, "Erreur récupération tags.json");
-
-        const dataTags = await resTags.json();
-        const tagsArray = JSON.parse(atob(dataTags.content));
-        const tagSha = dataTags.sha;
-
-        let lastId = tagsArray.reduce((max, tag) => Math.max(max, parseInt(tag.id, 10)), 0);
-
-        for (const label of tagLabels) {
-            const existing = tagsArray.find(t => t.label.toLowerCase() === label.toLowerCase());
-            if (existing) {
-                tagIds.push(existing.id.toString());
-            } else {
-                const newId = ++lastId;
-                tagsArray.push({ id: newId, label });
-                tagIds.push(newId.toString());
-            }
-        }
-
-        // Mise à jour du fichier tags.json
-        const updatedTagsContent = utf8ToBase64(JSON.stringify(tagsArray, null, 2));
-        const updateTagsRes = await fetch(TAGS_API_URL, {
-            method: 'PUT',
-            headers: {
-                'Authorization': `token ${token}`,
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                message: "Ajout de nouveaux tags via extension Chrome",
-                content: updatedTagsContent,
-                sha: tagSha
-            })
-        });
-        checkResponseOk(updateTagsRes, "Erreur mise à jour tags.json");
-    } else {
-        // Tous les tags sont déjà des IDs
-        tagIds.push(...tags);
-    }
+    // ==== 1. `tags` est déjà une liste d'IDs propre, voir processTagsAndUpdate()
+    const tagIds = tags;
 
     // ==== 2. Mise à jour de pensine.json ====
     const GITHUB_API_URL = await getGitHubJsonUrl("pensine.json");

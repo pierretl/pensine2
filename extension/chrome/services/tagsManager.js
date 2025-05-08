@@ -56,7 +56,7 @@ export async function processTagsAndUpdate(rawTags) {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                message: "Ajout de nouveaux tags via extension",
+                message: "Ajout de nouveaux tags avec extension Chrome Pensine",
                 content: encoded,
                 sha: shaTags
             })
