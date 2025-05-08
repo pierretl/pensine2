@@ -11,6 +11,7 @@ import { loadTagsInDatalist, handleTagInput, addTagToList } from './utils/tags.j
 import { getPageInfo, getCurrentTab, getScreenshot } from './services/dataTab.js';
 import { log } from './utils/log.js';
 import { validateBookmarkFields, sanitizeText } from './utils/validateFields.js';
+import { processTagsAndUpdate } from './services/tagsManager.js';
 import { saveBookmark } from './services/github.js';
 
 //////////////////////////////////////////////////////////
@@ -124,14 +125,34 @@ dom.saveButton.addEventListener("click", async () => {
     const description = sanitizeText(rawDesc, 500);
     const urlSite = rawUrl.trim(); // L'URL est déjà validée, pas besoin de sanitize
     const urlfavicon = rawFaviconUrl.trim();
+
+    // Tag
+    let updatedTagIds;
+    try {
+        updatedTagIds = await processTagsAndUpdate(dom.tagIds.value.split(','));
+        dom.tagIds.value = updatedTagIds.join(','); // Pour le mettre à jour dans le DOM
+    } catch (err) {
+        log("Erreur lors du traitement des tags.");
+        return;
+    }
   
+    // Screenshot
     if (!cachedScreenshotDataUrl) {
         log("Erreur : aucune capture disponible.");
         return;
     }
-  
+
+    // Save
     try {
-        await saveBookmark({ note, urlfavicon, urlSite, title, description, screenshotDataUrl: cachedScreenshotDataUrl });
+        await saveBookmark({
+            note,
+            urlfavicon,
+            urlSite,
+            title,
+            description,
+            screenshotDataUrl: cachedScreenshotDataUrl,
+            tags: updatedTagIds
+        });
         log("Marque-page enregistré avec succès !");
     } catch (err) {
         console.error(err);
