@@ -7,22 +7,25 @@
 </head>
 <body>
 
+    <label class="mb-10">Theme&nbsp;:
+        <select id="themeSelect">
+            <option value="system">System</option>
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+        </select>
+    </label>
     <nav role="navigation" class="mb-16 flex ai-c gap">
         <ul class="reset flex ai-c gap" role="tablist" aria-label="Onglets">
             <li role="presentation">
                 <button class="tab" id="tab1" role="tab" aria-controls="panel1" aria-selected="true" tabindex="0">Ajouter</button>
             </li>
             <li role="presentation">
-                <button class="tab" id="tab2" role="tab" aria-controls="panel2" aria-selected="false" tabindex="-1">Config</button>
+                <button class="tab" id="tab2" role="tab" aria-controls="panel2" aria-selected="false" tabindex="-1">Pensine</button>
+            </li>
+            <li role="presentation">
+                <button class="tab" id="tab3" role="tab" aria-controls="panel3" aria-selected="false" tabindex="-1">Config</button>
             </li>
         </ul>
-        <label>Theme&nbsp;:
-            <select id="themeSelect">
-                <option value="system">System</option>
-                <option value="light">Light</option>
-                <option value="dark">Dark</option>
-            </select>
-        </label>
     </nav>
 
     <!-- Ajouter -->
@@ -59,8 +62,15 @@
         <button type="button" id="saveButton">Ajouter ce marque page</button>
     </div>
 
+    <!-- Pensine -->
+    <div id="panel2" role="tabpanel" tabindex="0" aria-labelledby="tab2">
+        <p>Espace disponible :</p>
+        <progress id="repoSizeProgress" value="0" max="100"></progress>
+        <p id="repoSizeLabel">0</p>
+    </div>
+
     <!-- Config -->
-    <div id="panel2" role="tabpanel" tabindex="0" aria-labelledby="tab2" class="hide">
+    <div id="panel3" role="tabpanel" tabindex="0" aria-labelledby="tab3" class="hide">
         <label for="userInput">Nom d'utilisateur GitHub</label>
         <input type="text" id="userInput" class="mb-10">
 

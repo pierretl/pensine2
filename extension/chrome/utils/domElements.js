@@ -25,5 +25,7 @@ export const dom = {
     screenshotImg: document.getElementById("screenshotImg"),
     screenshotCode: document.getElementById("screenshotCode"),
     log: document.getElementById("log"),
-    saveButton: document.getElementById("saveButton")
+    saveButton: document.getElementById("saveButton"),
+    repoSizeProgress: document.getElementById('repoSizeProgress'),
+    repoSizeLabel: document.getElementById('repoSizeLabel'),
 };

@@ -159,3 +159,9 @@ dom.saveButton.addEventListener("click", async () => {
         log("ERREUR : " + err.message);
     }
 });
+
+//////////////////////////////////////////////////////////
+// ESPACE DISPONIBLE
+//////////////////////////////////////////////////////////
+import { displayRepoSizeProgress } from './services/displayRepoSize.js';
+document.addEventListener("DOMContentLoaded", displayRepoSizeProgress);
