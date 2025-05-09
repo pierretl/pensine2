@@ -3,8 +3,14 @@ import { formatNanmeScreenshot } from '../utils/formatNanmeScreenshot.js';
 import { log } from '../utils/log.js';
 import { checkResponseOk } from '../utils/checkResponseOk.js';
 
+// Fonction d'encodage UTF-8 vers Base64
 export function utf8ToBase64(str) {
     return btoa(unescape(encodeURIComponent(str)));
+}
+
+// Fonction de décodage Base64 vers UTF-8
+function base64ToUtf8(str) {
+    return decodeURIComponent(escape(atob(str)));
 }
 
 export async function saveBookmark({ note, urlfavicon, urlSite, title, description, screenshotDataUrl, tags }) {
@@ -18,10 +24,10 @@ export async function saveBookmark({ note, urlfavicon, urlSite, title, descripti
     // Upload de la capture
     await uploadScreenshotToGitHub({ base64Image, imagePath, token });
 
-    // ==== 1. `tags` est déjà une liste d'IDs propre, voir processTagsAndUpdate()
+    // Tag
     const tagIds = tags;
 
-    // ==== 2. Mise à jour de pensine.json ====
+    // Mise à jour de pensine.json
     const GITHUB_API_URL = await getGitHubFileUrl("pensine.json");
 
     log("Chargement du JSON GitHub...");
@@ -35,7 +41,10 @@ export async function saveBookmark({ note, urlfavicon, urlSite, title, descripti
     checkResponseOk(res, "Erreur récupération JSON");
 
     const data = await res.json();
-    const jsonArray = JSON.parse(atob(data.content));
+
+    // Décodage UTF-8
+    const jsonUtf8 = base64ToUtf8(data.content);
+    const jsonArray = JSON.parse(jsonUtf8);
     const sha = data.sha;
 
     // Ajouter un nouveau marque-page
@@ -45,13 +54,14 @@ export async function saveBookmark({ note, urlfavicon, urlSite, title, descripti
         title,
         description,
         screenshot: imageFileName,
-        tags: tagIds.join(','),  // 💡 Clé tags avec IDs séparés par virgule
+        tags: tagIds.join(','),  // Ex: "1,3,5"
         note,
         date: new Date().toISOString()
     });
 
-    // Encodage final
+    // Encodage propre en UTF-8 + Base64
     const updatedContent = utf8ToBase64(JSON.stringify(jsonArray, null, 2));
+
     const updateRes = await fetch(GITHUB_API_URL, {
         method: 'PUT',
         headers: {
