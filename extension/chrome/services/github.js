@@ -1,8 +1,7 @@
-import { getGithubToken, getGitHubJsonUrl, getGitHubUploadUrl } from '../utils/githubUtils.js';
+import { getGithubToken, getGitHubFileUrl } from '../utils/githubUtils.js';
 import { formatNanmeScreenshot } from '../utils/formatNanmeScreenshot.js';
 import { log } from '../utils/log.js';
 import { checkResponseOk } from '../utils/checkResponseOk.js';
-
 export function utf8ToBase64(str) {
     return btoa(unescape(encodeURIComponent(str)));
 }
@@ -22,7 +21,7 @@ export async function saveBookmark({ note, urlfavicon, urlSite, title, descripti
     const tagIds = tags;
 
     // ==== 2. Mise à jour de pensine.json ====
-    const GITHUB_API_URL = await getGitHubJsonUrl("pensine.json");
+    const GITHUB_API_URL = await getGitHubFileUrl("pensine.json");
 
     log("Chargement du JSON GitHub...");
     const res = await fetch(GITHUB_API_URL, {
@@ -74,7 +73,7 @@ async function uploadScreenshotToGitHub({ base64Image, imagePath, token }) {
     let existingSha = null;
 
     // Vérifie si le fichier existe déjà
-    const checkUrl = await getGitHubUploadUrl(imagePath);
+    const checkUrl = await getGitHubFileUrl(imagePath);
     const checkRes = await fetch(checkUrl, {
         method: 'GET',
         headers: {
@@ -90,10 +89,10 @@ async function uploadScreenshotToGitHub({ base64Image, imagePath, token }) {
     } else if (checkRes.status !== 404) {
         checkResponseOk(checkRes, "Erreur vérification fichier existant");
     }
-
+    
     // Envoi du fichier
     log("Envoi de l'image sur GitHub...");
-    const uploadUrl = await getGitHubUploadUrl(imagePath);
+    const uploadUrl = await getGitHubFileUrl(imagePath);
     const uploadRes = await fetch(uploadUrl, {
         method: "PUT",
         headers: {

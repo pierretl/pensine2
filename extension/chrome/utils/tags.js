@@ -2,7 +2,7 @@
 
 import { log } from '../utils/log.js';
 import { dom } from './domElements.js';  // Importation des éléments DOM
-import { getGitHubJsonUrl } from '../utils/githubUtils.js';  // Importation de la méthode pour obtenir l'URL GitHub
+import { getGitHubFileUrl } from './githubUtils.js';  // Importation de la méthode pour obtenir l'URL GitHub
 
 /**
  * Ajoute un tag à la liste non ordonnée
@@ -76,7 +76,7 @@ export const addTagToList = (tagLabel, tagId) => {
  * @async
  */
 export const loadTagsInDatalist = () => {
-    getGitHubJsonUrl("tags.json")
+    getGitHubFileUrl("tags.json")
         .then(url => fetch(url))
         .then(response => {
             if (!response.ok) throw new Error("Erreur lors du chargement depuis l'API GitHub");

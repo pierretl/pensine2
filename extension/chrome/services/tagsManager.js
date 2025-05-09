@@ -1,8 +1,7 @@
-import { getGithubToken, getGitHubJsonUrl } from '../utils/githubUtils.js';
+import { getGithubToken, getGitHubFileUrl } from '../utils/githubUtils.js';
 import { checkResponseOk } from '../utils/checkResponseOk.js';
 import { utf8ToBase64 } from './github.js';
 import { log } from '../utils/log.js';
-
 /**
  * Prend une liste mixte d'IDs et de labels, met à jour tags.json si nécessaire,
  * et retourne une liste d'IDs correspondant à tous les tags.
@@ -16,7 +15,7 @@ export async function processTagsAndUpdate(rawTags) {
     const updatedTagIds = [];
 
     try {
-        const TAGS_API_URL = await getGitHubJsonUrl("tags.json");
+        const TAGS_API_URL = await getGitHubFileUrl("tags.json");
         const resTags = await fetch(TAGS_API_URL);
         const dataTags = await resTags.json();
         existingTags = JSON.parse(atob(dataTags.content));
@@ -48,7 +47,7 @@ export async function processTagsAndUpdate(rawTags) {
         const updatedTagsJson = [...existingTags, ...newTagsToAdd];
         const encoded = utf8ToBase64(JSON.stringify(updatedTagsJson, null, 2));
 
-        const TAGS_API_URL = await getGitHubJsonUrl("tags.json");
+        const TAGS_API_URL = await getGitHubFileUrl("tags.json");
         const updateRes = await fetch(TAGS_API_URL, {
             method: 'PUT',
             headers: {
