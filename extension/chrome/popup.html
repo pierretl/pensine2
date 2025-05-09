@@ -7,20 +7,23 @@
 </head>
 <body>
 
-    <label class="mb-10">Theme&nbsp;:
-        <select id="themeSelect">
+    <div class="flex ai-c gap mb-16">
+        <img src="icons/icon48.png" alt="">
+        <h1>Pensine</h1>
+        <select id="themeSelect" aria-label="Thème">
             <option value="system">System</option>
             <option value="light">Light</option>
             <option value="dark">Dark</option>
         </select>
-    </label>
+    </div>
+
     <nav role="navigation" class="mb-16 flex ai-c gap">
         <ul class="reset flex ai-c gap" role="tablist" aria-label="Onglets">
             <li role="presentation">
-                <button class="tab" id="tab1" role="tab" aria-controls="panel1" aria-selected="true" tabindex="0">Ajouter</button>
+                <button class="tab" id="tab1" role="tab" aria-controls="panel1" aria-selected="true" tabindex="0">Ajout</button>
             </li>
             <li role="presentation">
-                <button class="tab" id="tab2" role="tab" aria-controls="panel2" aria-selected="false" tabindex="-1">Pensine</button>
+                <button class="tab" id="tab2" role="tab" aria-controls="panel2" aria-selected="false" tabindex="-1">Liste</button>
             </li>
             <li role="presentation">
                 <button class="tab" id="tab3" role="tab" aria-controls="panel3" aria-selected="false" tabindex="-1">Config</button>
