@@ -3,6 +3,25 @@ import { checkResponseOk } from './checkResponseOk.js';
 import { log } from './log.js'; // Importer la fonction log
 import { dom } from './domElements.js'; // Importer l'objet dom
 
+function getImageUrlFromGitHub(filename) {
+    const imagePath = "media/screenshot/"; // Chemin de base dans le dépôt
+
+    return new Promise((resolve, reject) => {
+        chrome.storage.local.get(["githubUsername", "githubRepository"], (result) => {
+            const user = result.githubUsername;
+            const repo = result.githubRepository;
+
+            if (!user || !repo) {
+                return reject("Nom d’utilisateur ou dépôt GitHub manquant dans le stockage.");
+            }
+
+            const urlImage = `https://raw.githubusercontent.com/${user}/${repo}/main/${imagePath}${filename}`;
+            resolve(urlImage);
+        });
+    });
+}
+
+
 export async function displayPensineEntries() {
     try {
         const token = await getGithubToken();
@@ -46,36 +65,42 @@ export async function displayPensineEntries() {
         }, {});
 
         // Générer le HTML pour la liste
-        const pensineListItemsHTML = pensineEntries.map(entry => {
-            // Afficher les tags
-            let tagsHTML = '';
-            if (entry.tags) {
-                const entryTagIds = entry.tags.split(',').map(id => parseInt(id.trim(), 10));
-                const entryTagLabels = entryTagIds
-                    .map(tagId => tagMap[tagId])
-                    .filter(label => label); // Filtrer les IDs qui n'ont pas de label correspondant
-                if (entryTagLabels.length > 0) {
-                    tagsHTML = `<p>Tags: ${entryTagLabels.join(', ')}</p>`;
+        const pensineListItemsHTMLArray = await Promise.all(
+            pensineEntries.map(async (entry) => {
+                // Générer l'URL de l'image depuis GitHub
+                const urlImage = await getImageUrlFromGitHub(entry.screenshot);
+
+                // Afficher les tags
+                let tagsHTML = '';
+                if (entry.tags) {
+                    const entryTagIds = entry.tags.split(',').map(id => parseInt(id.trim(), 10));
+                    const entryTagLabels = entryTagIds
+                        .map(tagId => tagMap[tagId])
+                        .filter(label => label); // Filtrer les IDs sans label
+                    if (entryTagLabels.length > 0) {
+                        tagsHTML = `<p>Tags: ${entryTagLabels.join(', ')}</p>`;
+                    }
                 }
-            }
 
-            return `
-                <li>
-                    <div class="flex ai-c gap">
-                        <img src="${entry.urlfavicon}" alt="" width="16" height="16" />
-                        <p><a href="${entry.urlSite}" target="_blank">${entry.title}</a></p>
-                    </div>
-                    ${tagsHTML}
-                    <img src="media/screenshot/${entry.screenshot}" alt="" />
-                    <p>${entry.urlSite}</p>
-                    <p>${entry.description}</p>
-                    <p>${entry.note}</p>
-                    <p>${entry.date}</p>
-                </li>
-            `;
-        }).join(''); // Joindre tous les éléments li générés
+                return `
+                    <li>
+                        <div class="flex ai-c gap">
+                            <img src="${entry.urlfavicon}" alt="" width="16" height="16" />
+                            <p><a href="${entry.urlSite}" target="_blank">${entry.title}</a></p>
+                        </div>
+                        ${tagsHTML}
+                        <img src="${urlImage}" alt="" />
+                        <p>${entry.urlSite}</p>
+                        <p>${entry.description}</p>
+                        <p>${entry.note}</p>
+                        <p>${entry.date}</p>
+                    </li>
+                `;
+            })
+        );
 
-        let pensineListHTML = `<ul>${pensineListItemsHTML}</ul>`;
+const pensineListHTML = `<ul>${pensineListItemsHTMLArray.join('')}</ul>`;
+
 
         // Insérer le HTML dans l'élément dom.pensineContent
         if (dom.pensineContent) {
