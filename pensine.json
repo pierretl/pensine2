@@ -1,16 +1,6 @@
 [
   {
     "urlfavicon": "https://www.pierre.tl/images/favicon/favicon-32x32.png",
-    "urlSite": "https://www.pierre.tl/",
-    "title": "Pierre Tampon-Lajarriette",
-    "description": "Site personnel et laboratoire crÃ©atif depuis 2007 de Pierre Tampon-Lajarriette aka Katre, IntÃ©grateur Web.",
-    "screenshot": "pierre-tl__accueil__20250509_122302.png",
-    "tags": "4",
-    "note": "",
-    "date": "2025-05-09T10:23:04.184Z"
-  },
-  {
-    "urlfavicon": "https://www.pierre.tl/images/favicon/favicon-32x32.png",
     "urlSite": "https://www.pierre.tl/recueil/garder-focus-dans-modal/",
     "title": "Garder le focus à l&#039;intérieur d&#039;une modale - Accessibilité - Pierre Tampon-Lajarriette",
     "description": "Fonction JavaScript pour garder le focus à l&#039;intérieur d&#039;une boîte de dialogue que l&#039;ont vien d&#039;ouvrir",
