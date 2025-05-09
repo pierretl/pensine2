@@ -139,12 +139,6 @@ dom.saveButton.addEventListener("click", async () => {
         log("Erreur lors du traitement des tags.");
         return;
     }
-  
-    // Screenshot
-    if (!cachedScreenshotDataUrl) {
-        log("Erreur : aucune capture disponible.");
-        return;
-    }
 
     // Save
     try {

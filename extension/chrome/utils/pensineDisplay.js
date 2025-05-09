@@ -67,16 +67,25 @@ export async function displayPensineEntries() {
         // Générer le HTML pour la liste
         const pensineListItemsHTMLArray = await Promise.all(
             pensineEntries.map(async (entry) => {
-                // Générer l'URL de l'image depuis GitHub
-                const urlImage = await getImageUrlFromGitHub(entry.screenshot);
+                let imageHTML = '';
 
-                // Afficher les tags
+                // Si screenshot est défini et non vide
+                if (entry.screenshot) {
+                    const urlImage = await getImageUrlFromGitHub(entry.screenshot);
+                    imageHTML = `<img src="${urlImage}" alt="" />`;
+                } else if (entry.ogImage) {
+                    imageHTML = `<img src="${entry.ogImage}" alt="" />`;
+                } else {
+                    imageHTML = `<p><em>Pas d’image disponible</em></p>`;
+                }
+
+                // Tags
                 let tagsHTML = '';
                 if (entry.tags) {
                     const entryTagIds = entry.tags.split(',').map(id => parseInt(id.trim(), 10));
                     const entryTagLabels = entryTagIds
                         .map(tagId => tagMap[tagId])
-                        .filter(label => label); // Filtrer les IDs sans label
+                        .filter(label => label);
                     if (entryTagLabels.length > 0) {
                         tagsHTML = `<p>Tags: ${entryTagLabels.join(', ')}</p>`;
                     }
@@ -89,7 +98,7 @@ export async function displayPensineEntries() {
                             <p><a href="${entry.urlSite}" target="_blank">${entry.title}</a></p>
                         </div>
                         ${tagsHTML}
-                        <img src="${urlImage}" alt="" />
+                        ${imageHTML}
                         <p>${entry.urlSite}</p>
                         <p>${entry.description}</p>
                         <p>${entry.note}</p>
@@ -99,7 +108,8 @@ export async function displayPensineEntries() {
             })
         );
 
-const pensineListHTML = `<ul>${pensineListItemsHTMLArray.join('')}</ul>`;
+
+        const pensineListHTML = `<ul>${pensineListItemsHTMLArray.join('')}</ul>`;
 
 
         // Insérer le HTML dans l'élément dom.pensineContent

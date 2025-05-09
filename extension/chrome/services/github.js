@@ -17,12 +17,40 @@ export async function saveBookmark({ note, urlfavicon, urlSite, title, descripti
     const token = await getGithubToken();
     if (!token) throw new Error("Token GitHub introuvable");
 
-    const imageFileName = formatNanmeScreenshot(urlSite);
-    const imagePath = `media/screenshot/${imageFileName}`;
-    const base64Image = screenshotDataUrl.replace(/^data:image\/png;base64,/, '');
+    // Upload de la capture si existe (impossible sur smartphone)
+    let base64Image = null;
+    let imageFileName = "";
+    if (screenshotDataUrl && screenshotDataUrl.startsWith("data:image/")) {
+        // Screenshot valide
+        imageFileName = formatNanmeScreenshot(urlSite);
+        base64Image = screenshotDataUrl.replace(/^data:image\/png;base64,/, '');
+        const imagePath = `media/screenshot/${imageFileName}`;
+        await uploadScreenshotToGitHub({ base64Image, imagePath, token });
+    }
 
-    // Upload de la capture
-    await uploadScreenshotToGitHub({ base64Image, imagePath, token });
+    // Récupération de la balise <meta property="og:image">
+    let ogImageUrl = "";
+    try {
+        const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+        if (tab?.id) {
+            const [injectionResult] = await chrome.scripting.executeScript({
+                target: { tabId: tab.id },
+                func: () => {
+                    const meta = document.querySelector('meta[property="og:image"], meta[name="og:image"]');
+                    return meta?.content || "";
+                }
+            });
+
+            ogImageUrl = injectionResult?.result || "";
+            if (ogImageUrl) {
+                log("Image og:image trouvée :", ogImageUrl);
+            } else {
+                log("Aucune balise og:image trouvée.");
+            }
+        }
+    } catch (err) {
+        log("Erreur lors de la récupération de og:image :", err);
+    }
 
     // Tag
     const tagIds = tags;
@@ -53,8 +81,9 @@ export async function saveBookmark({ note, urlfavicon, urlSite, title, descripti
         urlSite,
         title,
         description,
-        screenshot: imageFileName,
-        tags: tagIds.join(','),  // Ex: "1,3,5"
+        screenshot: imageFileName,  // vide si aucun screenshot
+        ogImage: ogImageUrl,        // vide si non trouvé
+        tags: tagIds.join(','),     // Ex: "1,3,5"
         note,
         date: new Date().toISOString()
     });
