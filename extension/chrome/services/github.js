@@ -2,6 +2,7 @@ import { getGithubToken, getGitHubFileUrl } from '../utils/githubUtils.js';
 import { formatNanmeScreenshot } from '../utils/formatNanmeScreenshot.js';
 import { log } from '../utils/log.js';
 import { checkResponseOk } from '../utils/checkResponseOk.js';
+
 export function utf8ToBase64(str) {
     return btoa(unescape(encodeURIComponent(str)));
 }
