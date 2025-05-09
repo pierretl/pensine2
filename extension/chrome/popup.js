@@ -14,6 +14,10 @@ import { validateBookmarkFields, sanitizeText } from './utils/validateFields.js'
 import { processTagsAndUpdate } from './services/tagsManager.js';
 import { saveBookmark } from './services/github.js';
 
+import { displayPensineEntries } from './utils/pensineDisplay.js';
+
+import { displayRepoSizeProgress } from './services/displayRepoSize.js';
+
 //////////////////////////////////////////////////////////
 // GESTION DU THEME
 //////////////////////////////////////////////////////////
@@ -154,6 +158,9 @@ dom.saveButton.addEventListener("click", async () => {
             tags: updatedTagIds
         });
         log("Marque-page enregistré avec succès !");
+
+        displayPensineEntries();
+        log("Liste des marque-page mis à jour !");
     } catch (err) {
         console.error(err);
         log("ERREUR : " + err.message);
@@ -163,5 +170,11 @@ dom.saveButton.addEventListener("click", async () => {
 //////////////////////////////////////////////////////////
 // ESPACE DISPONIBLE
 //////////////////////////////////////////////////////////
-import { displayRepoSizeProgress } from './services/displayRepoSize.js';
 document.addEventListener("DOMContentLoaded", displayRepoSizeProgress);
+
+//////////////////////////////////////////////////////////
+// AFFICHE LES BOOKMARKS
+//////////////////////////////////////////////////////////
+document.addEventListener("DOMContentLoaded", async () => {
+    displayPensineEntries();
+});
