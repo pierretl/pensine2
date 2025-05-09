@@ -28,5 +28,6 @@ export const dom = {
     saveButton: document.getElementById("saveButton"),
     repoSizeProgress: document.getElementById('repoSizeProgress'),
     repoSizeLabel: document.getElementById('repoSizeLabel'),
+    reloadPensineContent: document.getElementById('reloadPensineContent'),
     pensineContent: document.getElementById('pensineContent'),
 };

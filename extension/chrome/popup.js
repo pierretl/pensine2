@@ -178,3 +178,4 @@ document.addEventListener("DOMContentLoaded", displayRepoSizeProgress);
 document.addEventListener("DOMContentLoaded", async () => {
     displayPensineEntries();
 });
+dom.reloadPensineContent.addEventListener("click", displayPensineEntries);
